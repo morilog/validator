@@ -1,0 +1,26 @@
+{
+    "name": "laratalks/validator",
+    "description": "Laravel Validation supports multiple scenarios",
+    "keywords": ["laravel", "validation", "validator", "laratalks"],
+    "type": "library",
+    "license": "GPL",
+    "authors": [
+     	{
+            "name": "bigsinoos",
+            "email": "pcfeeler@gmail.com"
+        },
+        {
+            "name": "Morteza Parvini",
+            "email": "m.parvini@outlook.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Laratalks\\Validator\\": "src/"
+        }
+    },
+    "require": {
+        "illuminate/validation": "^5.1",
+        "illuminate/contracts": "^5.1"
+    }
+}
