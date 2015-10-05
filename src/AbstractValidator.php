@@ -190,7 +190,7 @@ abstract class AbstractValidator
      */
     protected function getFailMessage()
     {
-        return $this->application('translator')->trans(static::EXCEPTION_KEY);
+        return $this->application->make('translator')->trans(static::EXCEPTION_KEY);
     }
 
     public function setScenario($scenario)
