@@ -22,5 +22,6 @@
     "require": {
         "illuminate/validation": "^5.1",
         "illuminate/contracts": "^5.1"
-    }
+    },
+    "minimum-stability": "dev"
 }
