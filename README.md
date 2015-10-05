@@ -54,7 +54,7 @@ use Laratalks\Validator\Exceptions\ValidationException;
 
 class UserController extends Controller
 {
-    public function register(Request $request, TestValidator $valdiator)
+    public function register(Request $request, UserValidator $valdiator)
     {
         try {
             // validate user input
