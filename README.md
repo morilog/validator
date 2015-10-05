@@ -4,4 +4,6 @@ and use every where and moderate your Domain rules easily.
 
 ### Installation
 Use composer:
-```composer require laratalks/validator```
+```bash
+ composer require laratalks/validator
+```
