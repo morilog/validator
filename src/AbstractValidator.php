@@ -63,6 +63,11 @@ abstract class AbstractValidator
     protected $scenario;
 
     /**
+     * @var Application
+     */
+    protected $application;
+    
+    /**
      * @param Factory $validatorFactory
      * @param Application $application
      */
