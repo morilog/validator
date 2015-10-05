@@ -4,6 +4,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Laratalks\Validator\Exceptions;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\Factory;
+use Laratalks\Validator\Exceptions\ValidationException;
 
 abstract class AbstractValidator
 {
