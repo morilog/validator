@@ -3,7 +3,10 @@ Simple validator library for Laravel framework with multiple scenarios. By using
 and use every where and moderate your Domain rules easily.
 
 ### Installation
-
+Use composer:
+```bash
+ composer require laratalks/validator
+```
 
 ### Usage
 Your valdiation classes must extends `Laratalks\Valdiator\AbstarctValdiator` :
