@@ -1,4 +1,5 @@
-<?php namespace Morilog\LaraPlanet\Exceptions\Validator;
+<?php
+namespace Laratalks\Validator\Exceptions;
 
 interface ValidationExceptionInterface {
 
