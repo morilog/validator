@@ -66,7 +66,7 @@ abstract class AbstractValidator
      * @var Application
      */
     protected $application;
-    
+
     /**
      * @param Factory $validatorFactory
      * @param Application $application
@@ -89,15 +89,7 @@ abstract class AbstractValidator
      */
     public function validate(array $data, $rules = null, array $messages = [], array $customAttributes = [])
     {
-        $rules = $rules ?: $this->rules;
-
-        if ($this->getScenario() !== null) {
-            $scenarioRules = camel_case($this->getScenario() . 'Rules');
-
-            if ($this->{$scenarioRules} !== null) {
-                $rules = $this->{$scenarioRules};
-            }
-        }
+        $rules = $rules ?: $this->getRules();
 
         $messages = empty($messages) ? $this->messages : $messages;
 
@@ -106,19 +98,11 @@ abstract class AbstractValidator
         $this->validated = $this->validatorFactory->make($data, $rules, $messages, $customAttributes);
 
         if ($this->exceptionStatus) {
-
             if ($this->validated->fails()) {
-
-
                 $e = new ValidationException($this->getFailMessage(), static::$statusCode, static::EXCEPTION_KEY);
-
                 $e->setErrors($this->validated->messages());
-
                 throw $e;
-
-
             }
-
         }
 
         return $this->validated;
@@ -151,26 +135,6 @@ abstract class AbstractValidator
     }
 
     /**
-     * Validate for update
-     *
-     * @param array $data
-     * @param null $rules
-     * @param array $messages
-     * @param array $customAttributes
-     * @throws ValidationException
-     */
-    public function updateValidate(array $data, $rules = null, $messages = [], array $customAttributes = [])
-    {
-        $rules = $rules ?: $this->updateRules;
-
-        $messages = empty($messages) ? $this->messages : $messages;
-
-        $customAttributes = empty($customAttributes) ? $this->customAttributes : $customAttributes;
-
-        $this->validate($data, $rules, $messages, $customAttributes);
-    }
-
-    /**
      * Set exception status
      *
      * @param $status
@@ -196,15 +160,46 @@ abstract class AbstractValidator
     public function setScenario($scenario)
     {
         $this->scenario = $scenario;
+        $scenarioRules = camel_case($scenario . 'Rules');
+
+        if ($this->{$scenarioRules} !== null) {
+            $this->rules = $this->{$scenarioRules};
+        }
 
         return $this;
     }
 
-    protected function getScenario()
+    protected function getRules()
     {
-        return $this->scenario;
+        return $this->rules;
     }
 
+    /**
+     * @param string $attribute
+     * @param string|array $rules
+     * @return $this
+     */
+    public function withRule($attribute, $rules)
+    {
+        if (array_key_exists($attribute, $this->rules)) {
+            $attributeRules = $this->rules[$attribute];
+
+            if (is_string($attributeRules)) {
+                $attributeRules = explode('|', $attributeRules);
+            }
+
+        } else {
+            $attributeRules = [];
+        }
+
+        if (is_string($rules)) {
+            $rules = explode('|', $rules);
+        }
+
+        $this->rules[$attribute] = array_merge($attributeRules, $rules);
+
+        return $this;
+    }
 
 
 }
