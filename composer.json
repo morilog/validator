@@ -20,8 +20,8 @@
         }
     },
     "require": {
-        "illuminate/validation": "^5.1",
-        "illuminate/contracts": "^5.1"
+        "illuminate/validation": "^5.1 || ^6.0",
+        "illuminate/contracts": "^5.1 || ^6.0"
     },
     "minimum-stability": "dev"
 }
